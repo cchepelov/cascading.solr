@@ -7,7 +7,7 @@
 	<artifactId>cascading.solr</artifactId>
 	<name>Cascading Scheme for Apache Solr</name>
 	<packaging>jar</packaging>
-	<version>3.0-SNAPSHOT</version>
+	<version>3.0.0-wip-1-SNAPSHOT</version>
 	<description>Cascading Scheme for creating Lucene indexes using Solr</description>
 	<url>http://github.com/ScaleUnlimited/cascading.solr</url>
 	<issueManagement>
@@ -51,6 +51,7 @@
             <groupId>cascading</groupId>
             <artifactId>cascading-hadoop</artifactId>
             <version>${cascading.version}</version>
+            <scope>provided</scope>
         </dependency>
         
         <dependency>
@@ -68,7 +69,7 @@
         <dependency>
             <groupId>com.scaleunlimited</groupId>
             <artifactId>cascading.utils</artifactId>
-            <version>2.5.1</version>
+            <version>3.0.0-wip-1-SNAPSHOT</version>
         </dependency>
         
 		<dependency>
