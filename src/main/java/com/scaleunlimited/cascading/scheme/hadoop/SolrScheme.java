@@ -62,12 +62,12 @@ public class SolrScheme extends Scheme<JobConf, RecordReader<Tuple, Tuple>, Outp
     }
     
     @Override
-    public void sourceConfInit(FlowProcess<JobConf> flowProcess, Tap<JobConf, RecordReader<Tuple, Tuple>, OutputCollector<Tuple, Tuple>> tap, JobConf conf) {
+    public void sourceConfInit(FlowProcess<? extends JobConf> flowProcess, Tap<JobConf, RecordReader<Tuple, Tuple>, OutputCollector<Tuple, Tuple>> tap, JobConf conf) {
         throw new TapException("SolrScheme can only be used as a sink, not a source");
     }
 
     @Override
-    public void sinkConfInit(FlowProcess<JobConf> flowProcess, Tap<JobConf, RecordReader<Tuple, Tuple>, OutputCollector<Tuple, Tuple>> tap, JobConf conf) {
+    public void sinkConfInit(FlowProcess<? extends JobConf> flowProcess, Tap<JobConf, RecordReader<Tuple, Tuple>, OutputCollector<Tuple, Tuple>> tap, JobConf conf) {
         // Pick temp location in HDFS for conf files.
         // TODO KKr - should I get rid of this temp directory when we're done?
         String coreDirname = _solrCoreDir.getName();
@@ -97,12 +97,12 @@ public class SolrScheme extends Scheme<JobConf, RecordReader<Tuple, Tuple>, Outp
     }
 
     @Override
-    public boolean source(FlowProcess<JobConf> conf, SourceCall<Object[], RecordReader<Tuple, Tuple>> sourceCall) throws IOException {
+    public boolean source(FlowProcess<? extends JobConf> conf, SourceCall<Object[], RecordReader<Tuple, Tuple>> sourceCall) throws IOException {
         throw new TapException("SolrScheme can only be used as a sink, not a source");
     }
 
     @Override
-    public void sink(FlowProcess<JobConf> flowProcess, SinkCall<Void, OutputCollector<Tuple, Tuple>> sinkCall) throws IOException {
+    public void sink(FlowProcess<? extends JobConf> flowProcess, SinkCall<Void, OutputCollector<Tuple, Tuple>> sinkCall) throws IOException {
         sinkCall.getOutput().collect(Tuple.NULL, sinkCall.getOutgoingEntry().getTuple());
     }
 }

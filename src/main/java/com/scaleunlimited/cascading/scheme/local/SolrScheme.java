@@ -59,17 +59,17 @@ public class SolrScheme extends Scheme<Properties, InputStream, OutputStream, Vo
     }
     
     @Override
-    public void sourceConfInit(FlowProcess<Properties> flowProcess, Tap<Properties, InputStream, OutputStream> tap, Properties conf) {
+    public void sourceConfInit(FlowProcess<? extends Properties> flowProcess, Tap<Properties, InputStream, OutputStream> tap, Properties conf) {
         throw new TapException("SolrScheme can only be used as a sink, not a source");
     }
 
     @Override
-    public boolean source(FlowProcess<Properties> conf, SourceCall<Void, InputStream> sourceCall) throws IOException {
+    public boolean source(FlowProcess<? extends Properties> conf, SourceCall<Void, InputStream> sourceCall) throws IOException {
         throw new TapException("SolrScheme can only be used as a sink, not a source");
     }
 
     @Override
-    public void sinkPrepare(FlowProcess<Properties> flowProcess, SinkCall<SolrCollector, OutputStream> sinkCall) throws IOException {
+    public void sinkPrepare(FlowProcess<? extends Properties> flowProcess, SinkCall<SolrCollector, OutputStream> sinkCall) throws IOException {
         if (!(sinkCall.getOutput() instanceof DirectoryFileOutputStream)) {
             throw new TapException("SolrScheme can only be used with a DirectoryTap in local mode");
         }
@@ -84,17 +84,17 @@ public class SolrScheme extends Scheme<Properties, InputStream, OutputStream, Vo
     }
     
     @Override
-    public void sinkConfInit(FlowProcess<Properties> flowProcess, Tap<Properties, InputStream, OutputStream> tap, Properties conf) {
+    public void sinkConfInit(FlowProcess<? extends Properties> flowProcess, Tap<Properties, InputStream, OutputStream> tap, Properties conf) {
         // TODO What would I want to do here, if anything?
     }
     
     @Override
-    public void sink(FlowProcess<Properties> flowProcess, SinkCall<SolrCollector, OutputStream> sinkCall) throws IOException {
+    public void sink(FlowProcess<? extends Properties> flowProcess, SinkCall<SolrCollector, OutputStream> sinkCall) throws IOException {
         sinkCall.getContext().collect(sinkCall.getOutgoingEntry().getTuple());
     }
     
     @Override
-    public void sinkCleanup(FlowProcess<Properties> flowProcess, SinkCall<SolrCollector, OutputStream> sinkCall) throws IOException {
+    public void sinkCleanup(FlowProcess<? extends Properties> flowProcess, SinkCall<SolrCollector, OutputStream> sinkCall) throws IOException {
         SolrCollector collector = sinkCall.getContext();
         collector.cleanup();
     }

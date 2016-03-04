@@ -12,7 +12,7 @@ import com.scaleunlimited.cascading.scheme.core.SolrWriter;
 
 public class SolrCollector extends SolrWriter {
 
-    public SolrCollector(FlowProcess<Properties> flowProcess, Fields sinkFields, File solrCoreDir, int maxSegments, String dataDirPropertyName, String dataDir) throws IOException {
+    public SolrCollector(FlowProcess<? extends Properties> flowProcess, Fields sinkFields, File solrCoreDir, int maxSegments, String dataDirPropertyName, String dataDir) throws IOException {
         super(new LocalKeepAliveHook(flowProcess), sinkFields, dataDirPropertyName, dataDir, solrCoreDir, maxSegments);
     }
     

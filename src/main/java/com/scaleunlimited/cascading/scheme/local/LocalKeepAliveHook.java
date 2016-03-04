@@ -8,9 +8,9 @@ import com.scaleunlimited.cascading.scheme.core.KeepAliveHook;
 
 public class LocalKeepAliveHook extends KeepAliveHook {
 
-    private FlowProcess<Properties> _flowProcess;
+    private FlowProcess<? extends Properties> _flowProcess;
 
-    public LocalKeepAliveHook(FlowProcess<Properties> flowProcess) {
+    public LocalKeepAliveHook(FlowProcess<? extends Properties> flowProcess) {
         _flowProcess = flowProcess;
     }
     
