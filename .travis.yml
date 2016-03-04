@@ -14,7 +14,4 @@ script:
   - cd scheme ; mvn install
 jdk:
   - oraclejdk8
-#notifications:
-#  email:
-#    - cch@transparencyrights.com
 
